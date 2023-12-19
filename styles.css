@@ -1,0 +1,48 @@
+/* Resets */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* container style */
+.container {
+    width: 600px;
+    height: 600px;
+    margin: 64px auto;
+    background-color: #e3e3e3;
+    display: flex;
+}
+
+.col {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.cell {
+    border: 1px solid #aaa;
+    flex: auto;
+}
+
+.cell:hover {
+    background-color: #aaa;
+}
