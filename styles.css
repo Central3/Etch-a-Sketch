@@ -12,6 +12,7 @@
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    background-color: #e3e3e3;
 }
 
 img,
@@ -27,8 +28,8 @@ svg {
 .container {
     width: 600px;
     height: 600px;
-    margin: 64px auto;
-    background-color: #e3e3e3;
+    margin: 64px auto 16px;
+    background-color: #fff;
     display: flex;
 }
 
@@ -43,6 +44,19 @@ svg {
     flex: auto;
 }
 
-.cell:hover {
-    background-color: #aaa;
+.cell-hover {
+    background-color: black;
+}
+
+.new {
+    background-color: greenyellow;
+    border: none;
+    margin: 0 auto 16px;
+    display: block;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.new:hover {
+    box-shadow: 2px 2px 5px green;
 }
