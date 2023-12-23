@@ -1,7 +1,8 @@
 const container = document.querySelector(".container");
 const newGridBtn = document.querySelector(".new");
+const toggleGridBtn = document.querySelector(".toggle-grid-btn");
 
-function createGrid(rowsCols = 2) {
+function createGrid(rowsCols = 16) {
     for (let row = 0; row < rowsCols; row++) {
         const newCol = document.createElement("div");
         newCol.classList.add("col");
@@ -37,4 +38,15 @@ newGridBtn.addEventListener("click", () => {
 
         createGrid(rowsCols);
     }
+});
+
+toggleGridBtn.addEventListener("click", () => {
+    toggleGridBtn.textContent =
+        toggleGridBtn.textContent === "Show Grid" ? "Hide Grid" : "Show Grid";
+
+    Array.from(container.children).forEach((col) => {
+        Array.from(col.children).forEach((cell) => {
+            cell.classList.toggle("cell__border");
+        });
+    });
 });

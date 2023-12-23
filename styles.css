@@ -40,23 +40,37 @@ svg {
 }
 
 .cell {
-    border: 1px solid #aaa;
     flex: auto;
+}
+
+.cell__border {
+    border: 1px solid #aaa;
 }
 
 .cell-hover {
     background-color: black;
 }
 
-.new {
-    background-color: greenyellow;
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
     border: none;
-    margin: 0 auto 16px;
-    display: block;
     font-size: 2.5rem;
     cursor: pointer;
+    margin: 24px 32px;
+}
+
+.new {
+    background-color: greenyellow;
 }
 
 .new:hover {
     box-shadow: 2px 2px 5px green;
+}
+
+.toggle-grid-btn:hover {
+    box-shadow: 2px 2px 5px;
 }
