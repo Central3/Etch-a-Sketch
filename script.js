@@ -25,12 +25,19 @@ container.addEventListener("mouseleave", () => (mousePressed = false));
 
 container.addEventListener("click", (event) => {
     if (event.target.classList.contains("cell")) {
-        event.target.classList.add("cell-hover");
+        const randomRed = Math.floor(Math.random() * 255 + 1);
+        const randomGreen = Math.floor(Math.random() * 255 + 1);
+        const randomBlue = Math.floor(Math.random() * 255 + 1);
+        event.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
     }
 });
+
 container.addEventListener("mouseover", (event) => {
     if (event.target.classList.contains("cell") && mousePressed) {
-        event.target.classList.add("cell-hover");
+        const randomRed = Math.floor(Math.random() * 255 + 1);
+        const randomGreen = Math.floor(Math.random() * 255 + 1);
+        const randomBlue = Math.floor(Math.random() * 255 + 1);
+        event.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
     }
 });
 
