@@ -2,6 +2,8 @@ const container = document.querySelector(".container");
 const newGridBtn = document.querySelector(".new");
 const toggleGridBtn = document.querySelector(".toggle-grid-btn");
 
+let mousePressed = false;
+
 function createGrid(rowsCols = 16) {
     for (let row = 0; row < rowsCols; row++) {
         const newCol = document.createElement("div");
@@ -17,13 +19,18 @@ function createGrid(rowsCols = 16) {
 
 createGrid();
 
-container.addEventListener("mouseover", (event) => {
-    if (event.target.className === "cell") {
-        event.target.classList.add("cell-hover");
+container.addEventListener("mousedown", () => (mousePressed = true));
+container.addEventListener("mouseup", () => (mousePressed = false));
+container.addEventListener("mouseleave", () => (mousePressed = false));
 
-        setTimeout(() => {
-            event.target.classList.remove("cell-hover");
-        }, 1000);
+container.addEventListener("click", (event) => {
+    if (event.target.classList.contains("cell")) {
+        event.target.classList.add("cell-hover");
+    }
+});
+container.addEventListener("mouseover", (event) => {
+    if (event.target.classList.contains("cell") && mousePressed) {
+        event.target.classList.add("cell-hover");
     }
 });
 
