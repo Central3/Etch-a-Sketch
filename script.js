@@ -1,11 +1,17 @@
-const container = document.querySelector(".container");
+const grid = document.querySelector(".grid");
 const newGridBtn = document.querySelector(".new");
 const toggleGridBtn = document.querySelector(".toggle-grid-btn");
+const blackColorBtn = document.querySelector(".black-color");
+const randomColorBtn = document.querySelector(".random-color");
 
 let mousePressed = false;
+let penColor = "default";
 
 document.addEventListener("mousedown", () => (mousePressed = true));
 document.addEventListener("mouseup", () => (mousePressed = false));
+
+blackColorBtn.addEventListener("click", () => (penColor = "default"));
+randomColorBtn.addEventListener("click", () => (penColor = "random"));
 
 function createGrid(rowsCols = 16) {
     for (let row = 0; row < rowsCols; row++) {
@@ -20,7 +26,7 @@ function createGrid(rowsCols = 16) {
 
             newCol.appendChild(newCell);
         }
-        container.appendChild(newCol);
+        grid.appendChild(newCol);
     }
 }
 
@@ -28,10 +34,14 @@ createGrid();
 
 function draw(event) {
     if (mousePressed || event.type === "mousedown") {
-        const randomRed = Math.floor(Math.random() * 256);
-        const randomGreen = Math.floor(Math.random() * 256);
-        const randomBlue = Math.floor(Math.random() * 256);
-        event.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+        if (penColor === "default") {
+            event.target.style.backgroundColor = "#444";
+        } else {
+            const randomRed = Math.floor(Math.random() * 256);
+            const randomGreen = Math.floor(Math.random() * 256);
+            const randomBlue = Math.floor(Math.random() * 256);
+            event.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+        }
     }
 }
 
@@ -52,7 +62,7 @@ toggleGridBtn.addEventListener("click", () => {
     toggleGridBtn.textContent =
         toggleGridBtn.textContent === "Show Grid" ? "Hide Grid" : "Show Grid";
 
-    Array.from(container.children).forEach((col) => {
+    Array.from(grid.children).forEach((col) => {
         Array.from(col.children).forEach((cell) => {
             cell.classList.toggle("cell__border");
         });

@@ -26,11 +26,32 @@ svg {
 
 /* container style */
 .container {
+    display: flex;
+}
+
+.grid-container {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
     width: 600px;
     height: 600px;
     margin: 16px auto 16px;
     background-color: #fff;
     display: flex;
+}
+
+.menu {
+    background-color: #dfdfdf;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    border-right: 2px solid #aaa;
 }
 
 .col {
@@ -51,26 +72,22 @@ svg {
     background-color: black;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-}
-
 button {
     border: none;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    margin: 24px 32px;
+    width: 90%;
+    margin: 4px 4px;
 }
 
 .new {
     background-color: greenyellow;
 }
 
-.new:hover {
+.green-btn:hover {
     box-shadow: 2px 2px 5px green;
 }
 
-.toggle-grid-btn:hover {
+.btn:hover {
     box-shadow: 2px 2px 5px;
 }
