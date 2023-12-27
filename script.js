@@ -4,6 +4,9 @@ const toggleGridBtn = document.querySelector(".toggle-grid-btn");
 
 let mousePressed = false;
 
+document.addEventListener("mousedown", () => (mousePressed = true));
+document.addEventListener("mouseup", () => (mousePressed = false));
+
 function createGrid(rowsCols = 16) {
     for (let row = 0; row < rowsCols; row++) {
         const newCol = document.createElement("div");
@@ -11,6 +14,10 @@ function createGrid(rowsCols = 16) {
         for (let col = 0; col < rowsCols; col++) {
             const newCell = document.createElement("div");
             newCell.classList.add("cell");
+
+            newCell.addEventListener("mouseover", draw);
+            newCell.addEventListener("mousedown", draw);
+
             newCol.appendChild(newCell);
         }
         container.appendChild(newCol);
@@ -19,27 +26,14 @@ function createGrid(rowsCols = 16) {
 
 createGrid();
 
-container.addEventListener("mousedown", () => (mousePressed = true));
-container.addEventListener("mouseup", () => (mousePressed = false));
-container.addEventListener("mouseleave", () => (mousePressed = false));
-
-container.addEventListener("click", (event) => {
-    if (event.target.classList.contains("cell")) {
-        const randomRed = Math.floor(Math.random() * 255 + 1);
-        const randomGreen = Math.floor(Math.random() * 255 + 1);
-        const randomBlue = Math.floor(Math.random() * 255 + 1);
+function draw(event) {
+    if (mousePressed || event.type === "mousedown") {
+        const randomRed = Math.floor(Math.random() * 256);
+        const randomGreen = Math.floor(Math.random() * 256);
+        const randomBlue = Math.floor(Math.random() * 256);
         event.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
     }
-});
-
-container.addEventListener("mouseover", (event) => {
-    if (event.target.classList.contains("cell") && mousePressed) {
-        const randomRed = Math.floor(Math.random() * 255 + 1);
-        const randomGreen = Math.floor(Math.random() * 255 + 1);
-        const randomBlue = Math.floor(Math.random() * 255 + 1);
-        event.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
-    }
-});
+}
 
 newGridBtn.addEventListener("click", () => {
     const rowsCols = Number(prompt("Enter the size of the grid (2 - 100): "));

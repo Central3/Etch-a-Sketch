@@ -28,7 +28,7 @@ svg {
 .container {
     width: 600px;
     height: 600px;
-    margin: 64px auto 16px;
+    margin: 16px auto 16px;
     background-color: #fff;
     display: flex;
 }
