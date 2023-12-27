@@ -68,16 +68,17 @@ svg {
     border: 1px solid #aaa;
 }
 
-.cell-hover {
-    background-color: black;
-}
-
 button {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
     width: 90%;
     margin: 4px 4px;
+}
+
+.active {
+    background-color: #444;
+    color: #fff;
 }
 
 .new {

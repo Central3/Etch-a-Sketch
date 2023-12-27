@@ -3,15 +3,37 @@ const newGridBtn = document.querySelector(".new");
 const toggleGridBtn = document.querySelector(".toggle-grid-btn");
 const blackColorBtn = document.querySelector(".black-color");
 const randomColorBtn = document.querySelector(".random-color");
+const eraseBtn = document.querySelector(".erase");
 
 let mousePressed = false;
 let penColor = "default";
 
-document.addEventListener("mousedown", () => (mousePressed = true));
+document.addEventListener("mousedown", () => mousePressed = true);
 document.addEventListener("mouseup", () => (mousePressed = false));
 
-blackColorBtn.addEventListener("click", () => (penColor = "default"));
-randomColorBtn.addEventListener("click", () => (penColor = "random"));
+blackColorBtn.addEventListener("click", () => {
+    penColor = "default";
+
+    blackColorBtn.classList.add("active");
+    randomColorBtn.classList.remove("active");
+    eraseBtn.classList.remove("active");
+});
+
+randomColorBtn.addEventListener("click", () => {
+    penColor = "random";
+
+    blackColorBtn.classList.remove("active");
+    randomColorBtn.classList.add("active");
+    eraseBtn.classList.remove("active");
+});
+
+eraseBtn.addEventListener("click", () => {
+    penColor = "erase";
+
+    blackColorBtn.classList.remove("active");
+    randomColorBtn.classList.remove("active");
+    eraseBtn.classList.add("active");
+});
 
 function createGrid(rowsCols = 16) {
     for (let row = 0; row < rowsCols; row++) {
@@ -21,8 +43,8 @@ function createGrid(rowsCols = 16) {
             const newCell = document.createElement("div");
             newCell.classList.add("cell");
 
-            newCell.addEventListener("mouseover", draw);
             newCell.addEventListener("mousedown", draw);
+            newCell.addEventListener("mouseover", draw);
 
             newCol.appendChild(newCell);
         }
@@ -36,11 +58,13 @@ function draw(event) {
     if (mousePressed || event.type === "mousedown") {
         if (penColor === "default") {
             event.target.style.backgroundColor = "#444";
-        } else {
+        } else if (penColor === "random") {
             const randomRed = Math.floor(Math.random() * 256);
             const randomGreen = Math.floor(Math.random() * 256);
             const randomBlue = Math.floor(Math.random() * 256);
             event.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+        } else {
+            event.target.style.backgroundColor = "white";
         }
     }
 }
